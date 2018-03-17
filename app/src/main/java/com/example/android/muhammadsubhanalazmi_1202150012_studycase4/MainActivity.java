@@ -13,12 +13,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     }
-
+    //onclick button untuk berpindah ke halaman list nama mahasiswa
     public void lsmhs(View view) {
         Intent intent = new Intent(this, listnamamahasiswa.class );
         startActivity(intent);
     }
-
+    //onclick buton untuk berpindah ke halaman pencarian gambar
     public void carigmbr(View view) {
         Intent intent = new Intent(this, pencarigambar.class);
         startActivity(intent);

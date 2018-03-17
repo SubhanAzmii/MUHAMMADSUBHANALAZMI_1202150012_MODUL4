@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 public class listnamamahasiswa extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class listnamamahasiswa extends AppCompatActivity {
     ProgressBar mprogressbar;
     Button btn;
 
-
+    private task task;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,8 @@ public class listnamamahasiswa extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new task().execute();
+                task = new task();
+                task.execute();
             }
         });
 
@@ -66,12 +68,16 @@ public class listnamamahasiswa extends AppCompatActivity {
             mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             mProgressDialog.setTitle("Loading Data");
             mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.setProgress(0);
 
             mProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel Process", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
+                    task.cancel(true);
                     mprogressbar.setVisibility(View.VISIBLE);
                     dialogInterface.dismiss();
+                    mprogressbar.setVisibility(View.GONE);
                 }
             });
             mProgressDialog.show();
@@ -85,6 +91,10 @@ public class listnamamahasiswa extends AppCompatActivity {
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }
+                if (isCancelled()){
+                    task.cancel(true);
+                    mprogressbar.setVisibility(View.GONE);
                 }
             }
             return null;
