@@ -27,7 +27,7 @@ public class listnamamahasiswa extends AppCompatActivity {
             "Sidiq",
             "Anas",
             "Ujang",
-            "kampret"
+            "Hanif"
     };
     ListView listview;
     ProgressBar mprogressbar;
