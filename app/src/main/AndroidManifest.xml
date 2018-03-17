@@ -17,8 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".listnamamahasiswa" />
-        <activity android:name=".pencarigambar"></activity>
+        <activity android:name=".listnamamahasiswa"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".pencarigambar"
+            android:configChanges="orientation|screenSize"></activity>
     </application>
 
 </manifest>
